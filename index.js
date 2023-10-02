@@ -12,7 +12,13 @@ app.get("/", function(request,response){
     let contenido=fs.readFileSync(__dirname+"/cliente/index.html");   
     response.setHeader("Content-type","text/html");   
     response.send(contenido); 
-});  
+});
+
+app.get("/agregarUsuario/:nick", function (request, response) {
+    let nick = request.params.nick;
+    let res = sistema.agregarUsuario(nick);
+    response.send(res);
+  });
 
 app.listen(PORT, () => {   
     console.log(`App está escuchando en el puerto ${PORT}`);   
