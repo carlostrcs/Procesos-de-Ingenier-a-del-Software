@@ -28,13 +28,17 @@ describe('El sistema...', function() {
   beforeEach(()=>{sistema=new modelo.Sistema()});
  
   it('inicialmente no hay usuarios', ()=> {
-    expect(sistema.numeroUsuarios()).toEqual(0)});
+    let numeroUsuarios = sistema.numeroUsuarios();
+    expect(numeroUsuarios.num).toEqual(0)});
 
   it('agregar usuario', ()=> {
-    expect(sistema.numeroUsuarios()).toEqual(0);
+    let numeroUsuarios = sistema.numeroUsuarios();
+    expect(numeroUsuarios.num).toEqual(0);
     sistema.agregarUsuario("Pepe");
-    expect(sistema.numeroUsuarios()).toEqual(1);
-    expect(sistema.usuarioActivo("Pepe")).toBe(true)});
+    let usuarioActivo = sistema.usuarioActivo("Pepe");
+    numeroUsuarios = sistema.numeroUsuarios();
+    expect(numeroUsuarios.num).toEqual(1);
+    expect(usuarioActivo.activo).toBe(true)});
   
   it('obtener usuarios', ()=>{
     expect(sistema.usuarios).toBe(sistema.obtenerUsuarios());
@@ -42,15 +46,19 @@ describe('El sistema...', function() {
 
   it('eliminar usuario', ()=>{
     sistema.agregarUsuario("Pepe")
-    expect(sistema.usuarioActivo("Pepe")).toBe(true)
+    let usuarioActivo = sistema.usuarioActivo("Pepe");
+    expect(usuarioActivo.activo).toBe(true)
     sistema.eliminarUsuario("Pepe")
-    expect(sistema.usuarioActivo("Pepe")).toBe(false)
-    expect(sistema.numeroUsuarios()).toEqual(0)
+    let numeroUsuarios = sistema.numeroUsuarios();
+    usuarioActivo = sistema.usuarioActivo("Pepe");
+    expect(usuarioActivo.activo).toBe(false)
+    expect(numeroUsuarios.num).toEqual(0)
    });
 
    it('usuario activo', ()=> {
     sistema.agregarUsuario("Pepe")
-    expect(sistema.usuarioActivo("Pepe")).toBe(true)});
+    let usuarioActivo = sistema.usuarioActivo("Pepe");
+    expect(usuarioActivo.activo).toBe(true)});
 
   
 });

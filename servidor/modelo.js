@@ -1,27 +1,41 @@
 function Sistema(){     
     this.usuarios={};     
-    this.agregarUsuario=function(nick){   
-        if(!this.usuarios[nick]){
-            console.log("Nuevo usuario con nick: "+nick)
-            this.usuarios[nick]=new Usuario(nick);
-        } 
-        else{
-            console.log("El nick está en uso")
-        }     
-    } 
+    this.agregarUsuario = function (nick) {
+        let res = { "nick": -1 }; 
+      
+        if (!this.usuarios[nick]) {
+          this.usuarios[nick] = new Usuario(nick); 
+          res.nick = nick;
+        } else {
+          console.log("El nick " + nick + " está en uso");
+        }
+      
+        return res; // Devuelve el objeto res, que ahora puede contener el nick o el valor predeterminado -1
+      }
+
     this.obtenerUsuarios=function(){
         return this.usuarios;
     }
+
     this.obtenerTodosNick=function(){
         return Object.keys(this.usuarios);
     }
+
     this.usuarioActivo=function(nick){
-        return (nick in this.usuarios);
+        let res = {activo:false};
+        if(nick in this.usuarios){
+            res.activo = true;
+        }
+        return res;
     }
+
     this.eliminarUsuario=function(nick){
         delete this.usuarios[nick];
     }
-    this.numeroUsuarios = ()=>{return Object.keys(this.usuarios).length}
+    
+    this.numeroUsuarios = ()=>{
+        return {num:Object.keys(this.usuarios).length};
+    }
 }  
 
 function Usuario(nick){
