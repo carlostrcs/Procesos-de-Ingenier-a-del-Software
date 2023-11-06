@@ -12,7 +12,7 @@ passport.deserializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
   clientID: "816518100249-5kaptprkasukamlbfb2l14e1vr6pfnq8.apps.googleusercontent.com",
   clientSecret: "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",
-  callbackURL: "http://localhost:3000/google/callback"
+  callbackURL: "https://procesos-de-ingenier-a-del-software-xffzgr7cpq-ew.a.run.app/google/callback"
 }, function(accessToken, refreshToken, profile, done) {
   return done(null, profile);
 }));
